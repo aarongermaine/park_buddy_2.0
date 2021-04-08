@@ -1,6 +1,30 @@
 <!-- Loop over each object in the projects array -->
 {{#each projects as |project| }}
-<div class="row mb-4 project">
+
+<div class="col text-center">
+  <div class="col-lg-4">
+    <div class="card home-card" style="width: 18rem;">
+      <img class="card-img-top"
+        src="https://images.unsplash.com/photo-1568226292321-dd67ff8b3b2b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80"
+        alt="Card image cap" height="200px">
+      <div class="card-body">
+        <h5 class="card-title">{{project.name}}</h5>
+        <p class="card-text">{{project.description}}
+        </p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">{{format_amount project.needed_funding}}</li>
+        <li class="list-group-item">{{project.user.name}}</li>
+        <li class="list-group-item">{{format_date project.date_created}}</li>
+      </ul>
+      <div class="card-body">
+        <a href="./projects" class="card-link">ADD PARK TO DB</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{!-- <div class="row mb-4 project">
   <div class="col-md-5">
     <h2>
       <!-- Call helper function with triple brackets to render the emoji span as HTML -->
@@ -20,5 +44,5 @@
       {{project.description}}
     </p>
   </div>
-</div>
+</div> --}}
 {{/each}}

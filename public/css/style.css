@@ -1,5 +1,48 @@
-header, .project:not(:last-child) {
+body {
+  background-color: #f3f3f6;
+}
+
+header,
+.project:not(:last-child) {
   border-bottom: 1px solid #ccc;
+}
+.hero-header {
+  background-image: url(../img/photo-1594324587519-20940384fd9c.jpeg);
+  display: flex;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+}
+.hero-text {
+  text-align: center;
+  padding: 20px;
+}
+.hero-btn {
+  padding: 20px;
+  background-color: #213633 !important;
+  color: #f3f3f6;
+}
+
+.homepage-body {
+  margin: 30px;
+}
+
+.home-card {
+  margin: 0 auto; /* Added */
+  float: none; /* Added */
+  margin-bottom: 10px; /* Added */
+}
+/* PROFILE PAGE */
+.profile-header {
+  padding: 30px;
+  font-size: 70px;
+}
+
+/* FOOTER */
+footer {
+  margin-top: 40px;
+  padding: 40px;
+  background-color: #213633;
 }
 
 .no-button {
