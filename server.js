@@ -30,6 +30,7 @@ app.use(session(sess));
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
+
 // Getting route here to apples. This could also go into the controllers page as well.
 app.get('/apple', function(req, res){
 	res.render("monkey")
