@@ -105,33 +105,33 @@
 // }
 // 
 // Nested fetch calls to get user's State
-requestOptions = {
-  method: "GET",
-  redirect: "follow",
-};
-fetch("https://ipapi.co/json/", requestOptions)
-  .then((response) => response.text())
-  .then((dataStr) => {
-    let data = JSON.parse(dataStr);
-    fetch("https://ipapi.co/json/", requestOptions)
-      .then((response) => response.json())
-      .then((IPdata) => {
-        var yourST = IPdata.region_code;
-        return fetch(
-          "https://developer.nps.gov/api/v1/parks?stateCode=" +
-            yourST +
-            "&api_key=" +
-            api_key,
-          requestOptions
-        );
-      })
-      .then((response) => {
-        return response.json();
-      })
-      .then((Statedata) => {
-        if (Statedata) {
-          statePark(Statedata);
-        }
-        return;
-      });
-  });
+// requestOptions = {
+//   method: "GET",
+//   redirect: "follow",
+// };
+// fetch("https://ipapi.co/json/", requestOptions)
+//   .then((response) => response.text())
+//   .then((dataStr) => {
+//     let data = JSON.parse(dataStr);
+//     fetch("https://ipapi.co/json/", requestOptions)
+//       .then((response) => response.json())
+//       .then((IPdata) => {
+//         var yourST = IPdata.region_code;
+//         return fetch(
+//           "https://developer.nps.gov/api/v1/parks?stateCode=" +
+//             yourST +
+//             "&api_key=" +
+//             api_key,
+//           requestOptions
+//         );
+//       })
+//       .then((response) => {
+//         return response.json();
+//       })
+//       .then((Statedata) => {
+//         if (Statedata) {
+//           statePark(Statedata);
+//         }
+//         return;
+//       });
+//   });

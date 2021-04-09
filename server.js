@@ -30,6 +30,11 @@ app.use(session(sess));
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
+// Getting route here to apples. This could also go into the controllers page as well.
+app.get('/apple', function(req, res){
+	res.render("monkey")
+})
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -39,3 +44,6 @@ app.use(routes);
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening'));
 });
+
+
+
