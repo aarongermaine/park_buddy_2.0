@@ -1,3 +1,29 @@
+var api_key = "J6YwwQU5Pdf3XX70BNdRWNHUZoz5neEQnOc5x3LL";
+// var lastKey = localStorage.getItem("lastKey");
+// var savedKey = localStorage.getItem("savedKey");
+// var latestKey = localStorage.getItem("latestKey");
+// var priceKey = localStorage.getItem("priceKey");
+// var feeKey= localStorage.getItem("feeKey");
+// // Getting Local Storage
+// window.onload = function () {
+//   var saveLast = localStorage.getItem(lastKey);
+//   var lastInfo = document.getElementById("park-info");
+//   lastInfo.innerHTML = saveLast;
+//   var saveWeather = localStorage.getItem(savedKey);
+//   var lastWeather = document.getElementById("park-weather-info");
+//   lastWeather.innerHTML = saveWeather;
+//   var saveName = localStorage.getItem(latestKey);
+//   var lastName = document.getElementById("park-name");
+//   lastName.innerHTML = saveName;
+//   var savePrice = localStorage.getItem(priceKey);
+//   var lastPrice = document.getElementById("park-fee");
+//   lastPrice.innerHTML = savePrice;
+//   var saveFee = localStorage.getItem(feeKey);
+//   var lastFee = document.getElementById("park-fee-info");
+//   lastFee.innerHTML = saveFee;
+// };
+// 
+// Event listener on main button
 var findParkBtn = document.querySelector("#startFindLocalPark");
 findParkBtn.addEventListener("click", function () {
   document.querySelector(".show").style.display = "block";
@@ -42,18 +68,21 @@ function statePark(Statedata) {
       postParkFeeInfo.append(seeParkFeeInfo);
       var seeImg = Statedata.data[index].images[0].url;
       var postImg = (document.getElementById("park-image").src = seeImg);
+
+      console.log(see);
+
       // Setting Local Storage
-      localStorage.setItem(index, parkInfo);
-      var lock = index;
-      localStorage.setItem("lastKey", lock);
-      localStorage.setItem(lastKey, seeWeather);
-      localStorage.setItem("savedKey", lastKey);
-      localStorage.setItem(savedKey, seeParkName);
-      localStorage.setItem("latestKey", savedKey);
-      localStorage.setItem(latestKey, seeParkFee);
-      localStorage.setItem("priceKey", latestKey);
-      localStorage.setItem(priceKey, seeParkFeeInfo);
-      localStorage.setItem("feeKey", priceKey);
+    //   localStorage.setItem(index, parkInfo);
+    //   var lock = index;
+    //   localStorage.setItem("lastKey", lock);
+    //   localStorage.setItem(lastKey, seeWeather);
+    //   localStorage.setItem("savedKey", lastKey);
+    //   localStorage.setItem(savedKey, seeParkName);
+    //   localStorage.setItem("latestKey", savedKey);
+    //   localStorage.setItem(latestKey, seeParkFee);
+    //   localStorage.setItem("priceKey", latestKey);
+    //   localStorage.setItem(priceKey, seeParkFeeInfo);
+    //   localStorage.setItem("feeKey", priceKey);
       //
       var activitiesArray = [];
       var sdidx = Statedata.data[index];
@@ -77,3 +106,36 @@ function statePark(Statedata) {
   });
   return;
 }
+// 
+// Nested fetch calls to get user's State
+requestOptions = {
+  method: "GET",
+  redirect: "follow",
+};
+fetch("https://ipapi.co/json/", requestOptions)
+  .then((response) => response.text())
+  .then((dataStr) => {
+    let data = JSON.parse(dataStr);
+    fetch("https://ipapi.co/json/", requestOptions)
+      .then((response) => response.json())
+      .then((IPdata) => {
+        var yourST = IPdata.region_code;
+        return fetch(
+          "https://developer.nps.gov/api/v1/parks?stateCode=" +
+            yourST +
+            "&api_key=" +
+            api_key,
+          requestOptions
+        );
+      })
+      .then((response) => {
+        return response.json();
+      })
+      .then((Statedata) => {
+        if (Statedata) {
+          statePark(Statedata);
+        }
+        return;
+      });
+  });
+  // 
