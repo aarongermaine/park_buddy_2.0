@@ -8,7 +8,17 @@
 </div>
 <script>
     var data
-    fetch('https://developer.nps.gov/api/v1/parks?stateCode=co+&api_key=J6YwwQU5Pdf3XX70BNdRWNHUZoz5neEQnOc5x3LL')
+
+  fetch("https://ipapi.co/json/", requestOptions)
+  .then((response) => response.text())
+  .then((dataStr) => {
+    let data = JSON.parse(dataStr);
+    fetch("https://ipapi.co/json/", requestOptions)
+      .then((response) => response.json())
+      .then((IPdata) => {
+        var yourST = IPdata.region_code;
+
+        return fetch('https://developer.nps.gov/api/v1/parks?stateCode=co+&api_key=J6YwwQU5Pdf3XX70BNdRWNHUZoz5neEQnOc5x3LL')
         .then(function (response) {
             return response.json()
         })
