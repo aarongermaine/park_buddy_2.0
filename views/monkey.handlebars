@@ -1,32 +1,37 @@
 <h1>Home page</h1>
 <div id="container">
-    <div id="parks-cards">
-    </div>
+    <div id="parks-cards"></div>
+
     <div>
         content on the right
     </div>
+
 </div>
 <script>
-    var data
+    var parksKey = 'J6YwwQU5Pdf3XX70BNdRWNHUZoz5neEQnOc5x3LL'
 
-  fetch("https://ipapi.co/json/", requestOptions)
-  .then((response) => response.text())
-  .then((dataStr) => {
-    let data = JSON.parse(dataStr);
-    fetch("https://ipapi.co/json/", requestOptions)
-      .then((response) => response.json())
-      .then((IPdata) => {
-        var yourST = IPdata.region_code;
+    const start = async () => {
+        var res = await fetch('https://ipapi.co/json')
+        var data = await res.json()
+        var stateIP = data.region_code
 
-        return fetch('https://developer.nps.gov/api/v1/parks?stateCode=co+&api_key=J6YwwQU5Pdf3XX70BNdRWNHUZoz5neEQnOc5x3LL')
-        .then(function (response) {
-            return response.json()
-        })
-        .then(function (parks) {
-            data = parks.data
-            for (var i = 0; i < parks.data.length; i++) {
-                var card = document.createElement('div')
-                card.innerHTML = `
+        console.log(stateIP)
+
+
+        var apiKey = `https://developer.nps.gov/api/v1/parks?stateCode=${stateIP}&api_key=${parksKey}`
+        console.log(apiKey)
+        var data;
+        fetch(apiKey)
+
+            .then(function (response) {
+                return response.json()
+            })
+            .then(function (parks) {
+                data = parks.data
+                console.log(data)
+                for (var i = 0; i < parks.data.length; i++) {
+                    var card = document.createElement('div')
+                    card.innerHTML = `
 
 <div class="col text-center">
   <div class="col-lg-4">
@@ -47,18 +52,22 @@
     </div>
   </div>
 </div>
-                
+
                 `
-                document.querySelector('#parks-cards').appendChild(card)
-            }
-            document.querySelectorAll('.add-fav').forEach(element => {
-                element.addEventListener('click', function (e) {
-                    var index = e.target.getAttribute('data-index')
-                    console.log(data[index])
-                    // post request (send park data to back-end)
+                    document.querySelector('#parks-cards').appendChild(card)
+                }
+                document.querySelectorAll('.add-fav').forEach(element => {
+                    element.addEventListener('click', function (e) {
+                        var index = e.target.getAttribute('data-index')
+
+
+                        console.log(data[index])
+                        // post request (send park data to back-end)
+                    })
                 })
             })
-        })
+    }
+    start()
 </script>
 <style>
     #container {
