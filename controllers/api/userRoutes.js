@@ -16,6 +16,24 @@ router.post('/', async (req, res) => {
   }
 });
 
+// router.post( '/:id/faves')
+//fetch url /api/users/42/faves req.params.id
+
+router.post('/faves')
+//fetch url /api/users/faves  req.body.user_id 
+
+router.post('/api/users/faves', async (req, res) => {
+  try {
+    const favesData  = await Faves.findAll(req.body.user_id);
+    res.status(200).json(favesData);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
+
+
+
 router.post('/login', async (req, res) => {
   try {
     const userData = await User.findOne({ where: { email: req.body.email } });
@@ -39,10 +57,9 @@ router.post('/login', async (req, res) => {
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
-      
+
       res.json({ user: userData, message: 'You are now logged in!' });
     });
-
   } catch (err) {
     res.status(400).json(err);
   }
