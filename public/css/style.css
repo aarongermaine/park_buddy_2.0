@@ -38,6 +38,30 @@ header,
   font-size: 70px;
 }
 
+/* APPLE */
+
+#container {
+  display: grid;
+  grid-template-columns: 5fr 3fr;
+  gap: 10px;
+}
+
+#container > div {
+  background-color: gray;
+}
+
+#parks-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  padding: 10px;
+}
+
+.homepage-img {
+  height: 200px;
+  width: 100%;
+}
+
 /* FOOTER */
 footer {
   margin-top: 40px;
