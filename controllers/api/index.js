@@ -1,9 +1,9 @@
 const router = require('express').Router();
 const userRoutes = require('./userRoutes');
-const parksRoutes = require('./parksRoutes');
+const faveRoutes = require('./faveRoutes');
 
 router.use('/users', userRoutes);
 
-router.use('/parks', parksRoutes);
+router.use('/faves', faveRoutes);
 
 module.exports = router;
