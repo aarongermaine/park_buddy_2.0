@@ -20,8 +20,8 @@ const sess = {
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
-    db: sequelize
-  })
+    db: sequelize,
+  }),
 };
 
 app.use(session(sess));
@@ -30,22 +30,17 @@ app.use(session(sess));
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
-
+// Getting route here to apples. This could also go into the controllers page as well.
+app.get('/', function (req, res) {
+  res.render('main');
+});
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
-// Getting route here to apples. This could also go into the controllers page as well.
-
-app.get('/apple', function(req, res){
-	res.render("monkey")
-})
 
 app.use(routes);
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening'));
 });
-
-
-
