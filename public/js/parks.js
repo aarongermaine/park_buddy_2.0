@@ -45,31 +45,39 @@ const start = async () => {
                 `;
         document.querySelector('#parks-cards').appendChild(card);
       }
-      document.querySelectorAll('.add-fav').forEach((element) => {
-        element.addEventListener('click', function (e) {
-          var index = e.target.getAttribute('data-index');
-          //add here new post etc
-          //faves_id
-          //faves_fullName
-          var fullName = e.target.getAttribute('data-fullName');
-          //faves_description
-          console.log(fullName);
+      const newFormHandler = async (event) => {
+        event.preventDefault();
 
-          //user_id
+      var index = event.target.getAttribute('data-index');
+    
+      //add here new post etc
+      //faves_id
+      //faves_fullName
+      var fullName = event.target.getAttribute('data-fullName');
+      //faves_description
+      console.log(fullName);
 
-          const response = fetch('/api/users/faves', {
-            method: 'POST',
-            body: JSON.stringify({ fullName }),
-            headers: { 'Content-Type': 'application/json' },
-          });
-          if (response.ok) {
-            // If successful, redirect the browser to the profile page
-            document.location.replace('/');
-          } else {
-            alert(response.statusText);
-          }
-        });
+      //user_id
+
+      const response = await fetch(`/api/faves`, {
+        method: 'POST',
+        body: JSON.stringify({ fullName }),
+        headers: { 'Content-Type': 'application/json' },
       });
+      console.log(response)
+      if (response.ok) {
+        // If successful, redirect the browser to the profile page
+        document.location.replace('/');
+      } else {
+        alert(response);
+      }
+    };
+      document.querySelectorAll('.add-fav').forEach((element) => {
+        // element.addEventListener('click', function (e) {
+          element.addEventListener('click', newFormHandler);
+          
+      // });
     });
-};
+});
+}
 start();
