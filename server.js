@@ -36,6 +36,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 // Getting route here to apples. This could also go into the controllers page as well.
+
 app.get('/apple', function(req, res){
 	res.render("monkey")
 })

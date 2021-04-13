@@ -29,7 +29,7 @@ Faves.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'parks',
+    modelName: 'faves',
   }
 );
 
