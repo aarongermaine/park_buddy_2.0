@@ -1,10 +1,11 @@
 var parksKey = "J6YwwQU5Pdf3XX70BNdRWNHUZoz5neEQnOc5x3LL";
 
 const start = async () => {
-  var res = await fetch("https://ipapi.co/json");
+  var res = await fetch('https://ipapi.co/json');
   var data = await res.json();
   var stateIP = data.region_code;
   var activitiesArray = [];
+
 
   console.log(stateIP);
 
@@ -17,92 +18,71 @@ const start = async () => {
     })
     .then(function (parks) {
       data = parks.data;
-      // console.log(parks.data);
-      // var length = 0;
+      console.log(data);
       for (var i = 0; i < parks.data.length; i++) {
-        var card = document.createElement("div");
-      //   console.log(parks.data[i].activities);
-      //   length = parks.data[i].activities.length;
-      //   console.log(length);
-      //   if (length > 10) {
-      //     length = 10;
-      //     console.log(length);
-      //   }
-      //   for (var x = 0; x < length; x++) {
-      //   console.log(parks.data[i].activities[x]);
-      //     activitiesArray.push(parks.data[i].activities[x].name);
-      //     console.log(activitiesArray);
-      //   }
-       
-      //   for (var i = 0; i < 5; i++) {
-      //     if (parks.data[i].activities[i]) {
-      //       var parkActivities = parks.data[i].activities[i];
-      //       console.log(parkActivities);
-      //       activitiesArray.push(parkActivities);
-      //     }
-      //   }
-
-
+        var card = document.createElement('div');
         card.innerHTML = `
 
-       <div class="col    text-center">
-           <div class="col-lg-4">
-             <div class="card home-card" style="width: 18rem;">
-                <img class= homepage-img src=${parks.data[i].images[0].url} alt="Card image cap" height="200px" width="auto">
-                <div class="card-body">
-                 <h4>${parks.data[i].fullName}</h4>
-                  <p class="card-text">${parks.data[i].description}</p>
-                </div>
-             
+<div class="col text-center">
+  <div class="col-lg-4">
+    <div class="card home-card" style="width: 18rem;">
+        <img class= homepage-img src=${parks.data[i].images[0].url} alt="Card image cap" height="200px" width="auto">
+        <div class="card-body">
+            <h4>${parks.data[i].fullName}</h4>
+            <p class="card-text">${parks.data[i].description}</p>
+        </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">PARK FEE: ${parks.data[i].entranceFees[0].cost}</li>
+                <li class="list-group-item">TYPE OF PARK: ${parks.data[i].designation} </li>
+                <li class="list-group-item"></li>
+            </ul>
+        <div class="card-body">
             
-             <ul class="list-group list-group-flush">
-                <li class="list-group-item">${parks.data[i].entranceFees[0].cost}</li>
-                <li class="list-group-item">${parks.data[i].weatherInfo}</li>
-             </ul>
-             <div class="card-body">
-               <button class="add-fav" data-index=${i} data-fullName="${parks.data[i].fullName}" >add fav</button>    
-             </div>
-            </div>
-            </div>
-         </div>`;
+     <button class="add-fav" data-index=${i} data-fullName="${parks.data[i].fullName}" data-description="${parks.data[i].description}" data-park-id="${parks.data[i].id}" >add fav</button>    </div>
+  </div>
+</div>
 
-        document.querySelector("#parks-cards").appendChild(card);
-
-        // activitiesArray.forEach(function (y) {
-        //   console.log(activitiesArray);
-        //   var list = document.createElement("li");
-        //   list.textContent = y;
-        //   console.log(list);
-        //   var todo = document.querySelector(".act");
-        //   console.log(todo);
-        //   todo.append(list);
-        // });
+                `;
+        document.querySelector('#parks-cards').appendChild(card);
       }
-      document.querySelectorAll(".add-fav").forEach((element) => {
-        element.addEventListener("click", function (e) {
-          var index = e.target.getAttribute("data-index");
-          //add here new post etc
-          //faves_id
-          //faves_fullName
-          var fullName = e.target.getAttribute("data-fullName");
-          //faves_description
-          console.log(fullName);
+      const newFormHandler = async (event) => {
+        event.preventDefault();
 
-          //user_id
+      var index = event.target.getAttribute('data-index');
+    
+      //add here new post etc
+      //faves_id
+      var park_id_code = event.target.getAttribute('data-park-id')
+      console.log(park_id_code);
 
-          const response = fetch("/api/users/faves", {
-            method: "POST",
-            body: JSON.stringify({ fullName }),
-            headers: { "Content-Type": "application/json" },
-          });
-          if (response.ok) {
-            // If successful, redirect the browser to the profile page
-            document.location.replace("/homepage");
-          } else {
-            alert(response.statusText);
-          }
-        });
+      //faves_fullName
+      var fullName = event.target.getAttribute('data-fullName');
+      
+      
+      //faves_description
+      var description = event.target.getAttribute('data-description');
+
+      //user_id
+
+      const response = await fetch(`/api/faves`, {
+        method: 'POST',
+        body: JSON.stringify({ fullName, description, park_id_code, }),
+        headers: { 'Content-Type': 'application/json' },
       });
+      console.log(response)
+      if (response.ok) {
+        // If successful, redirect the browser to the profile page
+        document.location.replace('/');
+      } else {
+        alert(response);
+      }
+    };
+      document.querySelectorAll('.add-fav').forEach((element) => {
+        // element.addEventListener('click', function (e) {
+          element.addEventListener('click', newFormHandler);
+          
+      // });
     });
-};
+});
+}
 start();
