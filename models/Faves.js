@@ -16,6 +16,9 @@ Faves.init(
       allowNull: false,
     },
     description: {
+      type: DataTypes.TEXT,
+    },
+    park_id_code: {
       type: DataTypes.STRING,
     },
     user_id: {

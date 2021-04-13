@@ -1,5 +1,3 @@
-console.log('sadasdsdad');
-
 var parksKey = 'J6YwwQU5Pdf3XX70BNdRWNHUZoz5neEQnOc5x3LL';
 
 const start = async () => {
@@ -32,13 +30,13 @@ const start = async () => {
             <p class="card-text">${parks.data[i].description}</p>
         </div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">${parks.data[i].entranceFees[0].cost}</li>
-                <li class="list-group-item"></li>
+                <li class="list-group-item">PARK FEE: ${parks.data[i].entranceFees[0].cost}</li>
+                <li class="list-group-item">TYPE OF PARK: ${parks.data[i].designation} </li>
                 <li class="list-group-item"></li>
             </ul>
         <div class="card-body">
             
-     <button class="add-fav" data-index=${i} data-fullName="${parks.data[i].fullName}" >add fav</button>    </div>
+     <button class="add-fav" data-index=${i} data-fullName="${parks.data[i].fullName}" data-description="${parks.data[i].description}" data-park-id="${parks.data[i].id}" >add fav</button>    </div>
   </div>
 </div>
 
@@ -52,16 +50,21 @@ const start = async () => {
     
       //add here new post etc
       //faves_id
+      var park_id_code = event.target.getAttribute('data-park-id')
+      console.log(park_id_code);
+
       //faves_fullName
       var fullName = event.target.getAttribute('data-fullName');
+      
+      
       //faves_description
-      console.log(fullName);
+      var description = event.target.getAttribute('data-description');
 
       //user_id
 
       const response = await fetch(`/api/faves`, {
         method: 'POST',
-        body: JSON.stringify({ fullName }),
+        body: JSON.stringify({ fullName, description, park_id_code, }),
         headers: { 'Content-Type': 'application/json' },
       });
       console.log(response)
