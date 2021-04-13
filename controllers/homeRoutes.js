@@ -116,7 +116,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/:id/faves', async (req, res) => {
+router.get('/api/users/faves', async (req, res) => {
   try {
     const faveData = await Faves.findByPk(req.params.id, {
       include: [
@@ -139,7 +139,7 @@ router.get('/:id/faves', async (req, res) => {
 });
 
 // Use withAuth middleware to prevent access to route
-router.get('/faves', withAuth, async (req, res) => {
+router.get('/api/users/faves', withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {

@@ -31,9 +31,9 @@ app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
 // Getting route here to apples. This could also go into the controllers page as well.
-app.get('/', function (req, res) {
-  res.render('main');
-});
+// app.get('/apple', function (req, res) {
+//   res.render('main');
+// });
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
