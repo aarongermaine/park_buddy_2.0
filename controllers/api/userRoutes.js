@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const { User } = require('../../models');
-const { Faves } = require('../../models');
 
 router.post('/', async (req, res) => {
   try {
@@ -17,33 +16,6 @@ router.post('/', async (req, res) => {
   }
 });
 
-// router.post( '/:id/faves')
-//fetch url /api/users/42/faves req.params.id
-
-// router.post('/faves', async (req, res) => {
-//   try {
-//     const faveData
-//   }
-// })
-//fetch url /api/users/faves  req.body.user_id
-
-// router.post('/', async (req, res) => {
-//   try {
-//     const favesData = await Faves.findAll(req.body.user_id);
-//     res.status(200).json(favesData);
-//   } catch (err) {
-//     res.status(400).json(err);
-//   }
-// });
-
-router.post('/', async (req, res) => {
-  try {
-    const favesData = await Faves.create(req.body.user_id);
-    res.status(200).json(favesData);
-  } catch (err) {
-    res.status(400).json(err);
-  }
-});
 
 router.post('/login', async (req, res) => {
   try {

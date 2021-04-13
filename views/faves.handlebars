@@ -1,19 +1,11 @@
-{{!-- <div class="text-center">
-  <h2>{{name}}</h2>
-  <p>{{{get_emoji}}}</p>
-  <p>{{description}}</p>
-  <p>Created by {{user.name}} on {{format_date date_created}}</p>
-  <p>
-    <span for="img" aria-label="money">💲</span>
-    <span class="dollar-amount">{{format_amount needed_funding}}</span>
-    needed
-  </p>
-  <p>
-    <button class="btn btn-primary">Fund this Project!</button>
-  </p>
-</div> --}}
+
+{{!-- Create an each plugin for faves? {{#each faves as |faves|}} --}}
+
+
 <div class="col-12 mb-4 text-center">
-  <h1>PARK NAME GOES HERE</h1>
+
+
+  <h1>{{fullName}}</h1>
   <p id="park-name"></p>
 </div>
 
@@ -27,18 +19,6 @@
   </div>
 </div>
 
-{{!-- <div class="col-md-4 mb-4">
-  <div class="card-body">
-    <h5 class="card-title">{{faves.name}}</h5>
-    <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eum similique repellat a
-      laborum, rerum voluptates ipsam eos quo tempore iusto dolore modi dolorum in pariatur. Incidunt repellendus
-      praesentium quae!</p>
-    <h5 class="card-title">{{user.name}}</h5>
-    <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eum similique repellat a
-      laborum, rerum voluptates ipsam eos quo tempore iusto dolore modi dolorum in pariatur. Incidunt repellendus
-      praesentium quae!</p>
-  </div>
-</div> --}}
 <div class="col-md-12 text-center">
   <a href="../views/homepage.handlebars" class="btn btn-outline-success btn-lg ">See More Parks</a>
   <a href="" class="btn btn-outline-danger btn-lg "><i class="far fa-heart"></i></a>
@@ -46,3 +26,4 @@
 
 <a href="/project/1"> <button class="add-fav btn-outline-danger btn-lg" data-index=${i}
     data-fullName="${parks.data[i].fullName}"><i class="far fa-heart"></i></button> </a>
+
