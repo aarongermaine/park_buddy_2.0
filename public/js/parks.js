@@ -1,12 +1,9 @@
 var parksKey = 'J6YwwQU5Pdf3XX70BNdRWNHUZoz5neEQnOc5x3LL';
-
 const start = async () => {
   var res = await fetch('https://ipapi.co/json');
   var data = await res.json();
   var stateIP = data.region_code;
-
   console.log(stateIP);
-
   var apiKey = `https://developer.nps.gov/api/v1/parks?stateCode=${stateIP}&api_key=${parksKey}`;
   console.log(apiKey);
   var data;
@@ -20,7 +17,6 @@ const start = async () => {
       for (var i = 0; i < parks.data.length; i++) {
         var card = document.createElement('div');
         card.innerHTML = `
-
 <div class="col text-center">
   <div class="col-lg-4">
     <div class="card home-card" style="width: 18rem;">
@@ -35,33 +31,24 @@ const start = async () => {
                 <li class="list-group-item"></li>
             </ul>
         <div class="card-body">
-            
      <button class="add-fav" data-index=${i} data-fullName="${parks.data[i].fullName}" data-description="${parks.data[i].description}" data-park-id="${parks.data[i].id}" >add fav</button>    </div>
   </div>
 </div>
-
                 `;
         document.querySelector('#parks-cards').appendChild(card);
       }
       const newFormHandler = async (event) => {
         event.preventDefault();
-
       var index = event.target.getAttribute('data-index');
-    
       //add here new post etc
       //faves_id
       var park_id_code = event.target.getAttribute('data-park-id')
       console.log(park_id_code);
-
       //faves_fullName
       var fullName = event.target.getAttribute('data-fullName');
-      
-      
       //faves_description
       var description = event.target.getAttribute('data-description');
-
       //user_id
-
       const response = await fetch(`/api/faves`, {
         method: 'POST',
         body: JSON.stringify({ fullName, description, park_id_code, }),
@@ -78,7 +65,6 @@ const start = async () => {
       document.querySelectorAll('.add-fav').forEach((element) => {
         // element.addEventListener('click', function (e) {
           element.addEventListener('click', newFormHandler);
-          
       // });
     });
 });
