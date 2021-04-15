@@ -1,5 +1,33 @@
+/* MAIN BODY STUFF- THINGS THAT DONT CHANGE */
 body {
   background-color: #f3f3f6;
+}
+
+h4 {
+  font-family: "Fredoka One", cursive;
+  text-align: center;
+  font-size: 65px;
+  color: #264041;
+}
+
+h5 {
+  font-family: "Fredoka One", cursive;
+  text-align: center;
+  font-size: 40px;
+  color: #4a4a4a;
+}
+
+p {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+}
+
+li {
+  font-size: 10px;
+}
+
+.jumbotron-fluid {
+  padding: 5em inherit;
 }
 
 header,
@@ -7,7 +35,8 @@ header,
   border-bottom: 1px solid #ccc;
 }
 .hero-header {
-  background-image: url(../img/photo-1594324587519-20940384fd9c.jpeg);
+  background-image: url(../img/forest-5319107-01.png);
+  background-color: #213633;
   display: flex;
   justify-content: center;
   background-size: cover;
@@ -16,6 +45,10 @@ header,
 .hero-text {
   text-align: center;
   padding: 20px;
+
+  font-size: 100px;
+  font-family: "Fredoka One", cursive;
+  color: #f6f6f6;
 }
 .hero-btn {
   padding: 20px;
@@ -38,7 +71,7 @@ header,
   font-size: 70px;
 }
 
-/* APPLE */
+/* HOMEPAGE/CARDS */
 
 #container {
   display: grid;
@@ -47,21 +80,47 @@ header,
 }
 
 #container > div {
-  background-color: gray;
+  background-color: #f6f6f6;
+}
+.card-body-title {
+  text-align: center;
+  padding: 20px;
+  font-size: 50px;
+  font-family: "Fredoka One", cursive;
+  color: #264041;
 }
 
 #parks-cards {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 10px;
-  padding: 10px;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 20px;
+}
+.card {
+  border-radius: 20px;
 }
 
 .homepage-img {
   height: 200px;
   width: 100%;
 }
-
+.card-time-text {
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+.button {
+  font-family: "Fredoka One", cursive;
+  background-color: #4a4a4a;
+  color: #f6f6f6;
+  margin: 0px;
+}
+.button:hover {
+  background-color: #264041;
+  color: #f6f6f6;
+}
+/* END OF HOMEPAGE/CARDS */
 /* FOOTER */
 footer {
   margin-top: 40px;
@@ -69,6 +128,7 @@ footer {
   background-color: #213633;
 }
 
+/* THIS IS FOR THE LOGIN/LOGOUT */
 .no-button {
   background: none;
   border: none;
@@ -82,10 +142,4 @@ footer {
 .no-button:hover {
   color: #065b83;
   text-decoration: underline;
-}
-
-.dollar-amount {
-  color: #056605;
-  font-weight: bold;
-  margin-left: -5px;
 }
