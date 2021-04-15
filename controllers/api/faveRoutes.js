@@ -20,7 +20,7 @@ router.post('/', withAuth, async (req, res) => {
 
 router.get('/', withAuth, async (req, res) => {
   try {
-    const parkData = await Faves.findOne ({
+    const parkData = await Faves.findAll ({ where:{user_id:req.session.user_id},
       include: [
         {
           model: User,
@@ -32,9 +32,9 @@ router.get('/', withAuth, async (req, res) => {
       ],
     });
 console.log(parkData);
-    const favorite = parkData.get({ plain: true });
+    const favorites = parkData.map(el => el.get({ plain: true }));
     res.render('faves', {
-      parkData,
+      favorites,
       logged_in: req.session.logged_in,
     });
 
@@ -43,7 +43,6 @@ console.log(parkData);
     res.status(500).json(err);
   };
 });
-
 
 
 // '/api/faves' Displaying correct handlebars
