@@ -18,31 +18,31 @@ router.post('/', withAuth, async (req, res) => {
 
 // Lines 21-45 kept landing on 'catch 500' never loaded data
 
-// router.get('/', withAuth, async (req, res) => {
-//   try {
-//     const parkData = await Faves.findAll ({
-//       include: [
-//         {
-//           model: Faves,
-//           attributes: [
-//             fullName,
-//             description,
-//           ],
-//         },
-//       ],
-//     });
+router.get('/faves', withAuth, async (req, res) => {
+  try {
+    const parkData = await Faves.findAll ({
+      include: [
+        {
+          model: Faves,
+          attributes: [
+            fullName,
+            description,
+          ],
+        },
+      ],
+    });
 
-//     const favorite = parkData.get({ plain: true });
-//     res.render('faves', {
-//       faves,
-//      logged_in: req.session.logged_in,
-//     });
+    const favorite = parkData.get({ plain: true });
+    res.render('faves', {
+      faves,
+     logged_in: req.session.logged_in,
+    });
 
-//   } catch (err) {
-//     console.log(err);
-//     res.status(500).json(err);
-//   }
-// });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
 
 
 
