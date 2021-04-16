@@ -16,11 +16,7 @@ router.post("/", withAuth, async (req, res) => {
   }
 });
 
-router.get("/", withAuth, async (req, res) => {
-  res.render("faves", {
-    logged_in: req.session.logged_in,
-  });
-});
+
 
 router.get("/data", withAuth, async (req, res) => {
   try {
