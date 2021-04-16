@@ -24,12 +24,13 @@ const parkData = async () => {
     // Make h1 with park name
     var parkName = document.createElement("h1");
     // THIS ALLOWS YOU TO EDIT IN CCS WITH A CARD.
-    parkName.classList.add("color-red");
+    parkName.classList.add("faves-title");
     parkName.innerText = parks.data[i].fullName;
     parkCard.appendChild(parkName);
 
     // Make description with p tag
     var parkDescription = document.createElement("p");
+    parkName.classList.add("faves-description");
     parkDescription.innerText = parks.data[i].description;
     parkCard.appendChild(parkDescription);
 
