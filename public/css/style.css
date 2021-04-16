@@ -143,3 +143,7 @@ footer {
   color: #065b83;
   text-decoration: underline;
 }
+
+.color-red {
+  color: red;
+}

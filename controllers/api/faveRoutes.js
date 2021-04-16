@@ -1,9 +1,9 @@
 const router = require("express").Router();
-const { Faves , User } = require("../../models");
+const { Faves, User } = require("../../models");
 const withAuth = require("../../utils/auth");
 
-router.post('/', withAuth, async (req, res) => {
-  console.log('post', req.body);
+router.post("/", withAuth, async (req, res) => {
+  console.log("post", req.body);
   try {
     const newFave = await Faves.create({
       ...req.body,
@@ -17,33 +17,24 @@ router.post('/', withAuth, async (req, res) => {
 });
 
 
-router.get('/', withAuth, async (req, res) => {
+
+router.get("/data", withAuth, async (req, res) => {
   try {
-    const parkData = await Faves.findOne ({
+    const parkData = await Faves.findAll({
+      where: { user_id: req.session.user_id },
       include: [
         {
           model: User,
-          // attributes: [
-          //   "fullName",
-          //   "description",
-          // ],
         },
       ],
     });
-console.log(parkData);
-    const favorite = parkData.get({ plain: true });
-    res.render('faves', {
-      parkData,
-      logged_in: req.session.logged_in,
-    });
 
+    res.send({ data: parkData });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
-  };
+  }
 });
-
-
 
 // '/api/faves' Displaying correct handlebars
 
