@@ -16,7 +16,6 @@ router.post('/', withAuth, async (req, res) => {
   }
 });
 
-// Lines 21-45 kept landing on 'catch 500' never loaded data
 
 router.get('/', withAuth, async (req, res) => {
   try {
