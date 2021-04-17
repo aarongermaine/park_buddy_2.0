@@ -1,3 +1,5 @@
+/**Requiring Sequilize package in order to use MYSQL language in this Javascript program */
+
 const Sequelize = require('sequelize');
 require('dotenv').config();
 

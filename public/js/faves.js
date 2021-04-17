@@ -1,14 +1,7 @@
-// FIGURE THIS OUTTTTT
-console.log("works");
 
 const parkData = async () => {
   const response = await fetch(
     "/api/faves/data"
-    // ,
-    // {
-    //   method: "GET",
-    //   headers: { "Content-Type": "application/json" },
-    // }
   );
   var parks = await response.json();
 

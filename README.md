@@ -8,13 +8,13 @@
 
   ## Developers
  
-   Bryan Lara
+Bryan Lara
      -Project Manager
      -Back End Development
      -MYSQL/databases
      -Github: https://github.com/BRYLARA
 
-    David Bushard
+David Bushard
      -Front End Development
      -UI/UX
      -External API's
@@ -22,13 +22,13 @@
        -IP API (link to docs)
      -Github: https://github.com/DavidBuoy
 
-    Aaron Germaine
+Aaron Germaine
      -Github Master
      -Back End Development
      -Routes
      -Github: https://github.com/aarongermaine
 
-    Caitlin Murphy
+Caitlin Murphy
      -Presentation Coordinator
      -Documenting code 
      -README

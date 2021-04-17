@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
+/**The 'userRoutes' router.post is checking if the user is logged on as they view the Home Page */
+
 router.post('/', async (req, res) => {
   try {
     const userData = await User.create(req.body);
@@ -16,6 +18,7 @@ router.post('/', async (req, res) => {
   }
 });
 
+/**The router.post 'login' is verifying if the login information typed in by a user exists or not, if not an error message is sent back. Perhaps the user is a first time visitor and needs to Sign Up in order to have their information stored onto the database. */
 
 router.post('/login', async (req, res) => {
   try {
@@ -48,6 +51,7 @@ router.post('/login', async (req, res) => {
   }
 });
 
+/** The router.post 'logout' ends the user's session so their information is no longer being temporarily saved and they will need to login again to use the 'Faves' feature */
 router.post('/logout', (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {
